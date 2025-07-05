@@ -1,7 +1,7 @@
 @Library('terraform-module-ci-lib@main') _
 
 terraformCICheckTemplate(
-  tfModuleDir: 'terraform/modules/network',
+  tfModuleDir: 'modules/network',
   backendConfig: [
     bucket: 'tfstate-demo-bucket',
     key: 'network/dev/terraform.tfstate',
