@@ -2,6 +2,11 @@
 
 terraformCDTemplate(
   tfModuleDir: 'terraform',
+  backendConfig: [
+    bucket: 'tfstate-demo-bucket',
+    key: 'network/dev/terraform.tfstate',
+    region: 'ap-south-1'
+  ],
   tfVars: [
     environment: 'dev',
     region: 'ap-south-1',
@@ -9,5 +14,6 @@ terraformCDTemplate(
     public_subnet_cidr: '10.0.1.0/24',
     az: 'ap-south-1a'
   ],
-  action: 'apply'   // Change to 'destroy' to tear down
+  action: 'apply'  // or 'destroy'
 )
+
