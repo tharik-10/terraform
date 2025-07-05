@@ -28,7 +28,7 @@ resource "aws_subnet" "public" {
 }
 
 resource "aws_eip" "nat" {
-  vpc = true
+  domain = "vpc"
 }
 
 resource "aws_nat_gateway" "natgw" {
