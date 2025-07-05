@@ -1,7 +1,7 @@
 @Library('terraform-module-cd-lib@main') _
 
 terraformCDTemplate(
-  tfModuleDir: 'terraform/modules/network',
+  tfModuleDir: 'terraform',
   tfVars: [
     environment: 'dev',
     region: 'ap-south-1',
