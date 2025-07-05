@@ -3,7 +3,10 @@ provider "aws" {
 }
 
 resource "aws_vpc" "main" {
-  cidr_block = var.vpc_cidr
+  cidr_block           = var.vpc_cidr
+  enable_dns_support   = true
+  enable_dns_hostnames = true
+
   tags = {
     Name = "${var.environment}-vpc"
   }
@@ -11,6 +14,7 @@ resource "aws_vpc" "main" {
 
 resource "aws_internet_gateway" "igw" {
   vpc_id = aws_vpc.main.id
+
   tags = {
     Name = "${var.environment}-igw"
   }
@@ -24,18 +28,5 @@ resource "aws_subnet" "public" {
 
   tags = {
     Name = "${var.environment}-public-subnet"
-  }
-}
-
-resource "aws_eip" "nat" {
-  domain = "vpc"
-}
-
-resource "aws_nat_gateway" "natgw" {
-  subnet_id     = aws_subnet.public.id
-  allocation_id = aws_eip.nat.id
-
-  tags = {
-    Name = "${var.environment}-natgw"
   }
 }
