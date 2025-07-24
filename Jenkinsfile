@@ -4,7 +4,7 @@ properties([
     parameters([
         string(
             name: 'tfvarsFile',
-            defaultValue: '../../../terraform/terraform.tfvars',
+            defaultValue: 'terraform.tfvars',
             description: 'Path to .tfvars file relative to terraform module directory'
         ),
         booleanParam(
