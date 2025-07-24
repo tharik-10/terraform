@@ -11,7 +11,7 @@ properties([
 ])
 
 terraformCICheckTemplate(
-  terraformDir: 'terraform-module',
+  terraformDir: 'terraform',
   branch: 'main',
   repoUrl: 'https://github.com/tharik-10/terraform.git',
   credentialsId: 'Tharik-git-token',
