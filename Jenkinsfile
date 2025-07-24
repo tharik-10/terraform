@@ -1,18 +1,19 @@
 @Library('terraform-module-ci-lib@main') _
 
+properties([
+    parameters([
+        string(
+            name: 'tfvarsFile',
+            defaultValue: '../terraform.tfvars', //
+            description: 'Path to .tfvars file relative to network-skeleton directory (e.g., ../testing/basic-usage/terraform.tfvars)'
+        )
+    ])
+])
+
 terraformCICheckTemplate(
-  tfModuleDir: 'terraform',
-  backendConfig: [
-    bucket: 'tfstate-demo-bucket',
-    key: 'network/dev/terraform.tfstate',
-    region: 'ap-south-1'
-  ],
-  tfVars: [
-    environment: 'dev',
-    region: 'ap-south-1',
-    vpc_cidr: '10.0.0.0/16',
-    public_subnet_cidr: '10.0.1.0/24',
-    az: 'ap-south-1a'
-  ],
-  planOutFile: 'tfplan.out'
+  terraformDir: 'terraform-module',
+  branch: 'main',
+  repoUrl: 'https://github.com/tharik-10/terraform.git',
+  credentialsId: 'Tharik-git-token',
+  tfvarsFile: params.tfvarsFile
 )
