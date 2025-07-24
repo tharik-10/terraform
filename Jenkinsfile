@@ -16,7 +16,7 @@ properties([
 ])
 
 // Define the full path to the exact state directory
-def exactStatePath = "terraform-module/terraform"
+def exactStatePath = "terraform-module"
 
 terraformCDTemplate(
   terraformDir: 'terraform',
