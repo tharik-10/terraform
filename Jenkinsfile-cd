@@ -1,19 +1,30 @@
 @Library('terraform-module-cd-lib@main') _
 
-terraformCDTemplate(
-  tfModuleDir: 'terraform',
-  backendConfig: [
-    bucket: 'tfstate-demo-bucket',
-    key: 'network/dev/terraform.tfstate',
-    region: 'ap-south-1'
-  ],
-  tfVars: [
-    environment: 'dev',
-    region: 'ap-south-1',
-    vpc_cidr: '10.0.0.0/16',
-    public_subnet_cidr: '10.0.1.0/24',
-    az: 'ap-south-1a'
-  ],
-  action: 'destroy'  // or 'destroy'
-)
+properties([
+    parameters([
+        string(
+            name: 'tfvarsFile',
+            defaultValue: 'terraform.tfvars',
+            description: 'Path to .tfvars file relative to terraform module directory'
+        ),
+        booleanParam(
+            name: 'enableDestroy',
+            defaultValue: false,
+            description: 'Set to true if you want to destroy resources instead of applying them'
+        )
+    ])
+])
 
+// Define the full path to the exact state directory
+def exactStatePath = "/var/lib/jenkins/workspace/Terraform Infrastructure Jobs/CD/Terraform/Module/terraform-module"
+
+networkskeletoncdtemplate(
+  terraformDir: 'terraform',
+  branch: 'main',
+  repoUrl: 'https://github.com/tharik-10/terraform.git',
+  credentialsId: 'Tharik-git-token',
+  tfvarsFile: params.tfvarsFile,
+  enableDestroy: params.enableDestroy,
+  approvalMessage: "Please approve before applying/destroying Terraform changes to the terraform module",
+  exactStatePath: exactStatePath
+)
