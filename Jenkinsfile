@@ -18,7 +18,7 @@ properties([
 // Define the full path to the exact state directory
 def exactStatePath = "/var/lib/jenkins/workspace/Terraform Infrastructure Jobs/CD/Terraform/Module/terraform-module"
 
-networkskeletoncdtemplate(
+terraformCDTemplate(
   terraformDir: 'terraform',
   branch: 'main',
   repoUrl: 'https://github.com/tharik-10/terraform.git',
