@@ -16,7 +16,7 @@ properties([
 ])
 
 // Define the full path to the exact state directory
-def exactStatePath = "/var/lib/jenkins/workspace/Terraform Infrastructure Jobs/CD"
+def exactStatePath = "/var/lib/jenkins/workspace/Terraform Infrastructure Jobs/CD/terraform"
 
 terraformCDTemplate(
   terraformDir: 'terraform',
