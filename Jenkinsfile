@@ -4,7 +4,7 @@ properties([
     parameters([
         string(
             name: 'tfvarsFile',
-            defaultValue: '../terraform.tfvars', //
+            defaultValue: 'terraform.tfvars', //
             description: 'Path to .tfvars file relative to network-skeleton directory (e.g., ../testing/basic-usage/terraform.tfvars)'
         )
     ])
